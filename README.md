@@ -1,1 +1,2 @@
 here I will post how I approach to new problems and how my thinking process works. I will also post kinda notes kinda pseudo codes for new concepts or questions  that I see.
+this is not maintained nor made  for learning code for others , this is just my thoughts while learning. the text files in this repository will have spelling errors, stupid phrases and maybe even wrong approaches which I may correct later, these are just thoughts.
