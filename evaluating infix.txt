@@ -1,0 +1,12 @@
+ok so here's what we do 
+a stack for operators and a stack for operands
+while(curr operator has less priorit than those in the stack eval those and push the result back to stack as operands.
+finally if still elements left then evaluate remaining and empty the stack until 1 element left.
+finally the answer shall be stored in stack.top() as just one element left in stack. h
+
+handling brackets is easy just pop and eval until you ffind its adjacenet opening bracker
+
+
+I do wonder if modern algorithms in compiler first convert infix to postfix and then evaluate or just evaluate directly as I have written.
+also my operands can be variables as well as numbers of multiple digits ,would need to write much more code to do this.
+just searched google and it is done using conversion to postfix. good to know.
