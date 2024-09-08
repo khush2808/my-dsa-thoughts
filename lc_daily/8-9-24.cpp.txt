@@ -1,0 +1,66 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    vector<ListNode*> splitListToParts(ListNode* head, int k) {
+        int size = 0;
+        ListNode* temp = head;
+        while(temp){
+            temp=temp->next;
+            size++;
+        }
+        int div = size/k;
+        int rem = size%k;
+        ListNode* curr_head = head;
+        ListNode* curr_runner = head;
+        int curr = 0;
+        vector<ListNode*> ans;
+        for(int i = 0;i<rem*(div+1);i++){
+            if((curr+1)==(div+1)){
+                ListNode* nex;
+                if(!curr_runner)nex =NULL;
+                else  nex = curr_runner->next;
+                curr_runner->next = NULL;
+                ans.push_back(curr_head);
+                curr_head = nex;
+                curr_runner =nex;
+
+                curr = 0;
+            }
+            else{
+                curr_runner = curr_runner?curr_runner->next:NULL;
+                curr++;
+            }
+            cout<<curr<<'\n';
+        }
+        for(int i = 0;i<max(size,k) - rem*(div+1);i++){
+            if(div==0)ans.push_back(nullptr);
+            else if((curr+1)==(div)){
+                ListNode* nex;
+                if(!curr_runner)nex =NULL;
+                else  nex = curr_runner->next;
+                curr_runner->next = NULL;
+                ans.push_back(curr_head);
+                curr_head = nex;
+                curr_runner =nex;
+
+                curr = 0;
+            }
+            else{
+                curr_runner = curr_runner?curr_runner->next:NULL;
+                curr++;
+            }
+            cout<<curr<<'\n';
+        }
+
+        return ans;
+    }
+};
