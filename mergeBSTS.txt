@@ -1,0 +1,42 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    
+    TreeNode* flatten(TreeNode* root) {
+        TreeNode* temp = root;
+        TreeNode* ans = root;
+        while(ans->left)ans=ans->left;
+        while(temp!=nullptr){
+            if(temp->left){
+                TreeNode* l = temp->left;
+                while(l->right) l = l->right;
+                l->right = temp;
+                TreeNode* x=  temp;
+                temp= temp->left;
+                x->left= nullptr;
+            }
+            else temp = temp->right;
+        }
+        return ans;
+    }
+    TreeNode* canMerge(vector<TreeNode*>& t) {
+        int n = t.size();
+        for(int i = 0;i<n;i++){
+            t[i]=flatten(t[i]);
+        }
+        for(int i = 1;i<n;i++){
+            t[i] = merge(t[i],t[i-1]);
+        }
+        return convert(t[n-1]);
+    }
+};
